@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-안녕하세요, 테스트 입니다.dsf
+test message
 </body>
 </html>
