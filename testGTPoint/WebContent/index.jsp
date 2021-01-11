@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" import="java.sql.*"%>
+   pageEncoding="UTF-8" import="java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,20 +13,39 @@
       String DB_PASSWORD = "onlyroot";
       Connection conn;
       Statement stmt;
+      ResultSet rs;
+      String query = "select * from userpt";
+      
       try {
          Class.forName("com.mysql.jdbc.Driver");
          conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
          stmt = conn.createStatement();
-         conn.close();
-         out.println("MySql jdbc test: connect ok!!");
+         rs = stmt.executeQuery(query);
+      %>
+         <table>
+         	<tr>
+         		<th>회원ID</th>
+         		<th>회원이름</th>
+         		<th>현재 포인트</th>
+         	</tr>
+         <% 
+         	while(rs.next()){%>
+         		<tr>
+         		<td><%=rs.getInt("userId")%></td>
+         		<td><%=rs.getString("username")%></td>
+         		<td><%=rs.getInt("currentPt")%></td>
+         		</tr>
+         		<%
+         		}
+         		%></table>
+         	<%
+         	rs.close();
+         	stmt.close();
+         	conn.close();
       } catch (Exception e) {
-         out.println("ERROR");
-         out.println(e.getMessage());
+    	  e.printStackTrace();
       }
  %>
-   
-   
-   test
 </body>
 </html>
 
