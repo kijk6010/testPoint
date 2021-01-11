@@ -294,7 +294,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form>
+                                    <form action="exchangeAction.jsp" method="post">
                                         <div class="form-group">
                                             <label><h4>보유 포인트</h4></label>
                                              <%
@@ -307,7 +307,7 @@
         													 rs = stmt.executeQuery(query);
         													 if(rs.next()) {
    											   %>
-                                            <input class="form-control" type="text" value="<%=rs.getInt("currentPt")%>" disabled="">
+                                            <input class="form-control" type="text" value="<%=rs.getInt("currentPt")%>" name="currentPt" disabled="">
                                             <% 
                                               	} 
         													 rs.close();
@@ -318,7 +318,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label><h4>현금 계좌이체</h4><br>(10000포인트~)</label>
-                                            <input type="text" class="form-control" placeholder="">
+                                            <input type="text" class="form-control" name="exchangePt" placeholder="">
                                         </div>
                                         <div class="form-group">
                                             <label>현금 계좌이체<br>(10000포인트~)</label>
