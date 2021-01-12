@@ -309,7 +309,7 @@
          								<tr>
          									<td><%=rs.getInt("applicationDate")%></td>
          									<td><%=rs.getString("aboutExchange")%></td>
-         									<td><%=rs.getInt("exchangePt")%></td>
+         									<td><%=rs.getString("exchangePt")%></td>
 											<td><%=rs.getString("paymentDate")%></td>
          								</tr>
          								<%

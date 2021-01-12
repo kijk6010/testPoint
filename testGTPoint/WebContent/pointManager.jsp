@@ -284,7 +284,7 @@
       Connection conn;
       Statement stmt;
       ResultSet rs;
-      String query = "select * from managept";
+      String query = "select * from managept where checkEx=0";
       
       try {
          Class.forName("com.mysql.jdbc.Driver");

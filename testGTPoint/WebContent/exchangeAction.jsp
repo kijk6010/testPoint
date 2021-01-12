@@ -19,7 +19,7 @@ request.setCharacterEncoding("UTF-8");
 String exchangePt = request.getParameter("exchangePt");
 
 int exPt = Integer.parseInt(exchangePt);
-
+String applDate = sf.format(nowTime);
 String DB_URL = "jdbc:mysql://localhost:3306/gtpoint";
 String DB_USER = "root";
 String DB_PASSWORD = "onlyroot";
@@ -28,9 +28,13 @@ PreparedStatement pstmt;
 
 Class.forName("com.mysql.jdbc.Driver");
 conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+String sql2 ="insert into managePt values (123,?,?,?,0)";
 
-String sql2 ="insert into exchangePT values (123,'2020-02-01','테스트 데이터',"+exPt+",'2021-02-01');";
 pstmt = conn.prepareStatement(sql2);
+pstmt.setString(1, applDate);
+pstmt.setInt(2,exPt);
+pstmt.setString(3,"2020-02-01");
+
 pstmt.executeUpdate();
 
 String sql ="update userpt set currentPt =currentPt-"+exPt+" where userId = 123";
