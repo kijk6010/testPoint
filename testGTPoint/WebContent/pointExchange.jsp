@@ -307,7 +307,7 @@
          								<% 
          									while(rs.next()){%>
          								<tr>
-         									<td><%=rs.getInt("applicationDate")%></td>
+         									<td><%=rs.getString("applicationDate")%></td>
          									<td><%=rs.getString("aboutExchange")%></td>
          									<td><%=rs.getString("exchangePt")%></td>
 											<td><%=rs.getString("paymentDate")%></td>

@@ -16,9 +16,9 @@
 request.setCharacterEncoding("UTF-8");
 
 //파라미터 정보 가져오기
-String exchangePt = request.getParameter("exchangePt");
+String id = request.getParameter("id");
+int eid = Integer.parseInt(id);
 
-int exPt = Integer.parseInt(exchangePt);
 String applDate = sf.format(nowTime);
 String DB_URL = "jdbc:mysql://localhost:3306/gtpoint";
 String DB_USER = "root";
@@ -28,25 +28,26 @@ PreparedStatement pstmt;
 
 Class.forName("com.mysql.jdbc.Driver");
 conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
-String sql2 ="insert into managePt(userId,applicationDate,exchangePt,paymentDate,checkEx) values (123,?,?,?,0)";
+
+String sql ="update managePt set checkEx=1,paymentDate=? where exchangeId="+eid;
+pstmt = conn.prepareStatement(sql);
+pstmt.setString(1,applDate);
+pstmt.executeUpdate();
+
+String sql2 ="insert into exchangePt(userID, applicationDate, aboutExchange, exchangePt, paymentDate) select userId,applicationDate,concat(convert(month(applicationDate),char),'월 신청 포인트 지급'),exchangePt,paymentDate from managePt where exchangeId ="+eid+";";
 
 pstmt = conn.prepareStatement(sql2);
-pstmt.setString(1, applDate);
+/* pstmt.setString(1, applDate);
 pstmt.setInt(2,exPt);
 pstmt.setString(3,"2020-02-01");
-
+ */
 pstmt.executeUpdate();
-
-String sql ="update userpt set currentPt =currentPt-"+exPt+" where userId = 123";
-pstmt = conn.prepareStatement(sql);
-pstmt.executeUpdate();
-
 pstmt.close();
 conn.close();
 %>
 <script>
-alert("교환 신청이 완료 되었습니다.");
-location.href='pointMain.jsp';
+alert("지급이 완료 되었습니다.");
+location.href='pointManager.jsp';
 </script>
 </body>
 </html>

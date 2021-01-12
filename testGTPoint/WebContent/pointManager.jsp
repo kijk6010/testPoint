@@ -277,6 +277,10 @@
                                 <h4>포인트 관리</h4>
 
                             </div>
+                            <div class="card-body">
+                            <div class="basic-form">
+                                    <form action="manageAction.jsp" method="post">
+                                        <div class="form-group">
                               <%
       String DB_URL = "jdbc:mysql://localhost:3306/gtpoint";
       String DB_USER = "root";
@@ -297,6 +301,7 @@
                                     <table id="row-select" class="display table table-borderd table-hover">
                                         <thead>
          									<tr>
+         										<th>교환ID</th>
          										<th>신청자ID</th>
          										<th>신청일</th>
          										<th>신청포인트</th>
@@ -307,10 +312,11 @@
          								<% 
          									while(rs.next()){%>
          								<tr>
+											<td><%=rs.getInt("exchangeId") %></td>         								
          									<td><%=rs.getInt("userId") %></td>
          									<td><%=rs.getString("applicationDate")%></td>
          									<td><%=rs.getInt("exchangePt")%></td>
-											<td><button>지급하기</button></td>
+											<td><a href="manageAction.jsp?id=<%=rs.getInt("exchangeId")%>">지급하기</a></td>
          								</tr>
          								<%
          								}
@@ -318,7 +324,8 @@
          								</tbody>
 										<tfoot>
 											<tr>
-												<th>신청자ID</th>
+												<th>교환ID</th>
+         										<th>신청자ID</th>
          										<th>신청일</th>
          										<th>신청포인트</th>
 												<th></th>
@@ -341,7 +348,10 @@
                     <!-- /# column -->
                 </div>
                 <!-- /# row -->
-
+				</div>
+			</form>
+		</div>
+		</div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="footer">

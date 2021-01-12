@@ -306,7 +306,7 @@
          								<% 
          									while(rs.next()){%>
          								<tr>
-         									<td><%=rs.getInt("provisionDate")%></td>
+         									<td><%=rs.getString("provisionDate")%></td>
          									<td><%=rs.getString("aboutTest")%></td>
          									<td><%=rs.getInt("provisionPt")%></td>
          								</tr>
