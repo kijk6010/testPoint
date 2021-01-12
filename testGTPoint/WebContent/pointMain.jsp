@@ -44,18 +44,19 @@
     <div class="nano">
         <div class="nano-content">
             <ul>
-                <div class="logo"><a href="GT_Point.html">
+                <div class="logo"><a href="pointMain.jsp">
                     <!-- <img src="assets/images/logo.png" alt="" /> --><span>GreenTester</span></a></div>
                 <li class="label">Point</li>
-                <li><a href="GT_Point.html"><i class="ti-gift"></i> 포인트 교환신청</a></li>
+                <li><a href="pointMain.jsp"><i class="ti-gift"></i> 포인트 교환신청</a></li>
                 <li><a class="sidebar-sub-toggle"><i class="ti-time"></i> 포인트 지급/교환 이력
                     <span
                             class="sidebar-collapse-icon ti-angle-down"></span> </a>
                     <ul>
-                        <li><a href="GT_Point_Provision.html">포인트 지급이력</a></li>
-                        <li><a href="GT_Point_Exchange.html">포인트 교환이력</a></li>
+                        <li><a href="pointProvision.jsp">포인트 지급이력</a></li>
+                        <li><a href="pointExchange.jsp">포인트 교환이력</a></li>
                     </ul>
                 </li>
+                <li><a href="pointManager.jsp"><i class="ti-control-forward"></i>포인트 관리자</li>
                 <li><a href="GT_Inquiry.html"><i class="ti-comments"></i> 문의하기</a>
                 </li>
                 <li><a href="GT_policiy.html"><i class="ti-check-box"></i> 정책 및 개인정보</a>
@@ -343,5 +344,33 @@
         </div>
     </div>
 </div>
+<!-- jquery vendor -->
+<script src="js/lib/jquery.min.js"></script>
+<script src="js/lib/jquery.nanoscroller.min.js"></script>
+<!-- nano scroller -->
+<script src="js/lib/menubar/sidebar.js"></script>
+<script src="js/lib/preloader/pace.min.js"></script>
+<!-- sidebar -->
+
+<script src="js/lib/bootstrap.min.js"></script>
+<script src="js/scripts.js"></script>
+<!-- bootstrap -->
+
+<script src="js/lib/calendar-2/moment.latest.min.js"></script>
+<script src="js/lib/calendar-2/pignose.calendar.min.js"></script>
+<script src="js/lib/calendar-2/pignose.init.js"></script>
+
+
+<script src="js/lib/weather/jquery.simpleWeather.min.js"></script>
+<script src="js/lib/weather/weather-init.js"></script>
+<script src="js/lib/circle-progress/circle-progress.min.js"></script>
+<script src="js/lib/circle-progress/circle-progress-init.js"></script>
+<script src="js/lib/chartist/chartist.min.js"></script>
+<script src="js/lib/sparklinechart/jquery.sparkline.min.js"></script>
+<script src="js/lib/sparklinechart/sparkline.init.js"></script>
+<script src="js/lib/owl-carousel/owl.carousel.min.js"></script>
+<script src="js/lib/owl-carousel/owl.carousel-init.js"></script>
+<!-- scripit init-->
+<script src="js/dashboard2.js"></script>
 </body>
 </html>

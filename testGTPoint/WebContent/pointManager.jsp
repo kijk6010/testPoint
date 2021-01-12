@@ -274,7 +274,7 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-title">
-                                <h4>포인트 교환 이력</h4>
+                                <h4>포인트 관리</h4>
 
                             </div>
                               <%
@@ -284,7 +284,7 @@
       Connection conn;
       Statement stmt;
       ResultSet rs;
-      String query = "select * from exchangept where userId=123";
+      String query = "select * from managept";
       
       try {
          Class.forName("com.mysql.jdbc.Driver");
@@ -297,20 +297,20 @@
                                     <table id="row-select" class="display table table-borderd table-hover">
                                         <thead>
          									<tr>
+         										<th>신청자ID</th>
          										<th>신청일</th>
-         										<th>교환 내용</th>
-         										<th>포인트</th>
-												<th>지급일</th>
+         										<th>신청포인트</th>
+												<th></th>
   									       	</tr>
 										</thead>
  										<tbody>
          								<% 
          									while(rs.next()){%>
          								<tr>
-         									<td><%=rs.getInt("applicationDate")%></td>
-         									<td><%=rs.getString("aboutExchange")%></td>
+         									<td><%=rs.getInt("userId") %></td>
+         									<td><%=rs.getString("applicationDate")%></td>
          									<td><%=rs.getInt("exchangePt")%></td>
-											<td><%=rs.getString("paymentDate")%></td>
+											<td><button>지급하기</button></td>
          								</tr>
          								<%
          								}
@@ -318,10 +318,10 @@
          								</tbody>
 										<tfoot>
 											<tr>
-												<th>신청일</th>
-         										<th>교환 내용</th>
-         										<th>포인트</th>
-												<th>지급일</th>
+												<th>신청자ID</th>
+         										<th>신청일</th>
+         										<th>신청포인트</th>
+												<th></th>
 											</tr>
 										</tfoot>
 									</table>
@@ -354,7 +354,7 @@
         </div>
     </div>
 </div>
-<!-- jquery vendor -->
+	<!-- jquery vendor -->
 <script src="js/lib/jquery.min.js"></script>
 <script src="js/lib/jquery.nanoscroller.min.js"></script>
 <!-- nano scroller -->
@@ -381,6 +381,6 @@
 <script src="js/lib/owl-carousel/owl.carousel.min.js"></script>
 <script src="js/lib/owl-carousel/owl.carousel-init.js"></script>
 <!-- scripit init-->
-<script src="js/dashboard2.js"></script>	
+<script src="js/dashboard2.js"></script>
 </body>
 </html>
