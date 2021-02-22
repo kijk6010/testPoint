@@ -1,0 +1,80 @@
+유저 관련 _회원 아이디, 이름, 현재 포인트
+userId, username, currentPt
+
+포인트 지급 _회원 아이디, 날짜, 진행테스트, 포인트
+userId,  provisionDate, aboutTest, provisionPt
+
+포인트 교환 _ 회원 아이디, 신청일, 교환내용, 포인트, 지급일
+userId, applicationDate, aboutExchange, exchangePt, paymentDate
+
+포인트 관리자 _ 회원 아이디, 신청일, 교환내용, 포인트
+exchangeId, userId, applicationDate, exchangePt, paymentDate, checkEx
+
+use GTPoint;
+
+drop table userPT;
+create table userPT(
+ 	userId int primary key,
+	username varchar(20),
+	currentPt int
+);
+insert into userPT values (123,'손지현', 200000);
+insert into userPT values (125,'고수열', 50000);
+
+
+drop table provisionPT;
+create table provisionPT(
+	userId int,
+    provisionDate date,
+    aboutTest varchar(100),
+    provisionPt int
+);
+insert into provisionPT values (123,'2020.11.29','머머링 앱 테스트 진행', 3000);
+insert into provisionPT values (123,'2020.12.15','북모리 앱 테스트 진행', 4000);
+insert into provisionPT values (125,'2020.11.29','헬프사람넷 웹 테스트 진행', 5000);
+insert into provisionPT values (125,'2020.12.21','몽글 앱 테스트 진행', 6000);
+
+drop table exchangePT;
+create table exchangePT(
+	userID int,
+    applicationDate date,
+    aboutExchange varchar(200),
+    exchangePt int,
+    paymentDate date
+);
+insert into exchangePT values (123,'2020.10.29','10월 신청 포인트 지급',15000,'2020.11.01');
+insert into exchangePT values (123,'2020.11.11','11월 신청 포인트 지급',6000,'2020.12.01');
+insert into exchangePT values (123,'2020.11.29','11월 신청 포인트 지급',20000,'2020.12.01');
+insert into exchangePT values (125,'2020.10.29','10월 신청 포인트 지급',15000,'2020.11.01');
+insert into exchangePT values (125,'2020.11.11','11월 신청 포인트 지급',6000,'2020.12.01');
+insert into exchangePT values (125,'2020.11.29','11월 신청 포인트 지급',50000,'2020.12.01');
+
+drop table managePT;
+create table managePT(
+    exchangeId int not null auto_increment,	
+    userId int,
+    applicationDate date,
+    exchangePt int,
+    paymentDate date,
+    checkEx int,
+    PRIMARY KEY(exchangeId)
+);
+insert into managePT(userId,applicationDate,exchangePt,paymentDate,checkEx) values (125,'2020.11.29',50000,'2020.12.01',0);
+
+
+-----------------------------------
+
+update exchangept set exchangePt=0 where userID=125;
+
+
+insert into exchangePt(userID, applicationDate, aboutExchange, exchangePt, paymentDate)
+select userId,applicationDate,concat(convert(month(applicationDate),char),'월 신청 포인트 지급'),exchangePt,paymentDate from managePt
+where exchangeId =1;
+
+
+-----------------------------------------------------
+provisionPT  --- 지급내역
++ 지급내역이 추가(insert)되면 userPT의 currentPt에 + provisionPt
+
+exchangePT --- 교환내역
++ 교환내역이 추가(insert)되면 userPT의 currentPT에 - exchangePt
